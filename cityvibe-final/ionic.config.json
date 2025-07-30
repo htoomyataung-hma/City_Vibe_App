@@ -1,0 +1,7 @@
+{
+  "name": "cityvibe-final",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

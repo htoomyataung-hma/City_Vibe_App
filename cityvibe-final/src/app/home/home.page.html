@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>CityVibe</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div *ngIf="isLoading" class="ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Finding local events...</p>
+  </div>
+  <div *ngIf="!isLoading">
+    <ion-card *ngFor="let event of events">
+      <img [src]="event.image" [alt]="event.title" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ event.category }} • {{ event.location }}</ion-card-subtitle>
+        <ion-card-title>{{ event.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ event.description }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="goToSubmitEventPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
