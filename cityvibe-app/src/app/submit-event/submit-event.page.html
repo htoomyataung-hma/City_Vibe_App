@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Submit Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-input label="Event Title" label-placement="floating" [(ngModel)]="eventData.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Category" label-placement="floating" [(ngModel)]="eventData.category"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Location Name" label-placement="floating" [(ngModel)]="eventData.location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Description" label-placement="floating" [(ngModel)]="eventData.description"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" (click)="takePicture()" fill="outline">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Add Photo
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="getCurrentLocation()" fill="outline">
+          <ion-icon slot="start" name="location-outline"></ion-icon>
+          Get Location
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="eventData.image.startsWith('data:image')" class="ion-text-center ion-margin-top">
+    <p>Photo Preview:</p>
+    <img [src]="eventData.image" class="image-preview" />
+  </div>
+
+  <ion-button expand="block" (click)="submitEvent()" class="ion-margin-top" [disabled]="isSubmitting">
+    <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+    <span *ngIf="!isSubmitting">Submit Event</span>
+  </ion-button>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>CityVibe</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading Events...</p>
+  </div>
+  <ion-list *ngIf="!isLoading && events.length > 0" [inset]="true">
+    <ion-card *ngFor="let event of events">
+      <img [src]="event.image" [alt]="event.title" />
+      <ion-card-header>
+        <ion-card-subtitle>{{ event.category }} • {{ event.location }}</ion-card-subtitle>
+        <ion-card-title>{{ event.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ event.description }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <div *ngIf="!isLoading && events.length === 0" class="ion-text-center ion-padding">
+    <ion-icon name="sad-outline" size="large" color="medium"></ion-icon>
+    <p>No events found. Tap the '+' to add one!</p>
+  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="goToSubmitEventPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
