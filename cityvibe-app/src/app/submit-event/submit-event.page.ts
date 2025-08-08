@@ -39,13 +39,14 @@ export class SubmitEventPage {
         quality: 90,
         allowEditing: false,
         resultType: CameraResultType.DataUrl, 
-        source: CameraSource.Prompt
+        source: CameraSource.Camera
       });
       
       if (image.dataUrl) {
         this.eventData.image = image.dataUrl;
       }
     } catch (error) {
+      console.error('Camera error:', error);
       this.showToast('Could not take picture.', 'danger');
     }
   }
